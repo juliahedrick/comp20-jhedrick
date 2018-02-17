@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Rick Roll</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+<h1 id="title">Rick Roll</h1>
+
+<video src="https://www.cs.tufts.edu/comp/20/rickroll.mp4" id="rickroll" controls></video>
+<div id="lyrics"></div>
+
+<script>
+	var video =  document.getElementById("rickroll");
+	var songLyric = document.getElementById("lyrics");
+
+	video.addEventListener("timeupdate", function() {
+		if (video.currentTime < 17) {
+			songLyric.innerHTML = "";
+		} else if (video.currentTime > 18 && video.currentTime < 22) {
+			songLyric.innerHTML = "<h3>We're no strangers to love</h3>";
+
+		} else if (video.currentTime > 22 && video.currentTime < 26.5) {
+			songLyric.innerHTML = "<h3>You know the rules and so do I</h3>";
+
+		} else if (video.currentTime > 27.25 && video.currentTime < 30.5) {
+			songLyric.innerHTML = "<h3>A full commitment's what I'm thinking of</h3>";
+
+		} else if (video.currentTime > 30.5 && video.currentTime < 35) {
+			songLyric.innerHTML = "<h3>You wouldn't get this from any other guy</h3>";
+
+		} else if (video.currentTime > 35 && video.currentTime < 39) {
+			songLyric.innerHTML = "<h3>I just wanna tell you how I'm feeling</h3>";
+
+		} else if (video.currentTime > 40 && video.currentTime < 42.5) {
+			songLyric.innerHTML = "<h3>Gotta make you understand</h3>";
+
+		} else if (video.currentTime > 43 && video.currentTime < 44.5) {
+			songLyric.innerHTML = "<h3><Never gonna give you up</h3>";
+
+		} else if (video.currentTime > 45 && video.currentTime < 46.5)  {
+			songLyric.innerHTML = "<h3>Never gonna let you down</h3>";
+
+		} else if (video.currentTime > 47 && video.currentTime < 50.5) {
+			songLyric.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+
+		} else if (video.currentTime > 51 && video.currentTime < 52.75) {
+			songLyric.innerHTML = "<h3>Never gonna make you cry</h3>";
+
+		} else if (video.currentTime > 53 && video.currentTime < 55) {
+			songLyric.innerHTML = "<h3>Never gonna say goodbye</h3>";
+
+		} else if (video.currentTime > 55 && video.currentTime < 59) {
+			songLyric.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+
+		} else if (video.currentTime > 60.5 && video.currentTime < 64.5) {
+			songLyric.innerHTML = "<h3>We've known each other for so long</h3>";
+
+		} else if (video.currentTime > 65 && video.currentTime < 66) {
+			songLyric.innerHTML = "<h3>Your heart's been aching, but</h3>";
+
+		} else if (video.currentTime > 66.5 && video.currentTime < 69) {
+			songLyric.innerHTML = "<h3>You're too shy to say it</h3>";
+
+		} else if (video.currentTime > 69 && video.currentTime < 73) {
+			songLyric.innerHTML = "<h3>Inside, we both know what's been going on</h3>";
+
+		} else if (video.currentTime > 73.5 && video.currentTime < 77) {
+			songLyric.innerHTML = "<h3>We know the game and we're gonna play it</h3>";
+
+		} else if (video.currentTime > 78 && video.currentTime < 81.75) {
+			songLyric.innerHTML = "<h3>And if you ask me how I'm feeling</h3>";
+
+		} else if (video.currentTime > 82.5 && video.currentTime < 84.5) {
+			songLyric.innerHTML = "<h3>Don't tell me you're too blind to see</h3>";
+
+		} else if (video.currentTime > 84.5 && video.currentTime < 86){
+			songLyric.innerHTML = "<h3>Never gonna give you up</h3>";
+
+		} else if (video.currentTime > 86.5 && video.currentTime < 88) {
+			songLyric.innerHTML = "<h3>Never gonna let you down</h3>";
+
+		} else if (video.currentTime > 88.5 && video.currentTime < 92){
+			songLyric.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+
+		} else if (video.currentTime > 92.5 && video.currentTime < 94.25) {
+			songLyric.innerHTML = "<h3>Never gonna make you cry</h3>";
+
+		} else if (video.currentTime > 94.5 && video.currentTime < 96.5) {
+			songLyric.innerHTML = "<h3>Never gonna say goodbye</h3>";
+
+		} else if (video.currentTime > 96.5 && video.currentTime < 101) {
+			songLyric.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+
+		} else if (video.currentTime > 102 && video.currentTime < 103.75){
+			songLyric.innerHTML = "<h3>Never gonna give you up</h3>";
+
+		} else if (video.currentTime > 104 && video.currentTime < 105.5) {
+			songLyric.innerHTML = "<h3>Never gonna let you down</h3>";
+
+		} else if (video.currentTime > 106 && video.currentTime < 109.5){
+			songLyric.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+
+		} else if (video.currentTime > 110.5 && video.currentTime < 112) {
+			songLyric.innerHTML = "<h3>Never gonna make you cry</h3>";
+
+		} else if (video.currentTime > 112.5 && video.currentTime < 114) {
+			songLyric.innerHTML = "<h3>Never gonna say goodbye</h3>";
+
+		} else if (video.currentTime > 114.5 && video.currentTime < 118) {
+			songLyric.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+
+		} else if (video.currentTime > 120 && video.currentTime < 123) {
+			songLyric.innerHTML = "<h3>(Ooh, give you up)</h3>";
+
+		} else if (video.currentTime > 124 && video.currentTime < 127) {
+			songLyric.innerHTML = "<h3>(Ooh, give you up)</h3>";
+		}
+/*
+		else if
+			songLyric.innerHTML = "Never gonna give, never gonna give";
+
+		else if
+			songLyric.innerHTML = "(Give you up)";
+*/
+		else 
+			songLyric.innerHTML = "";
+
+	}, false);
+
+</script>
+
+
+
+</body>
+</html>	

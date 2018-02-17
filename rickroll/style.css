@@ -1,0 +1,19 @@
+#title {
+	text-align: center;
+}
+
+#rickroll {
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+#lyrics {
+	text-align: center;
+	background-color: white;
+	border-radius: 50px;
+}
+
+body {
+	background-color: grey;
+
+}
