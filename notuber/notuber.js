@@ -6,7 +6,7 @@ function init() {
 	myMap = {
 		zoom: 10, 
 		center: currentLoc, 
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
 	};
 
 	infowindow = new google.maps.InfoWindow()
@@ -29,46 +29,48 @@ function updateMap() {
 
 	marker = new google.maps.Marker({
 		position: currentLoc,
-		title: "passenger"
+		title: "FLaFPeNMZt",
+		icon: "passenger.png"
 	});
 
 	marker.setMap(map);
 
 	google.maps.event.addListener(marker, "click", function() {
-		infowindow.setContent(marker.title);
-		infowindow.open(map, marker);
+		infowindow.setContent(this.title);
+		infowindow.open(map, this);
 	});
 
 	findVehicles();
 }
 
 function findVehicles() {
-	params = "username=FLaFPeNMZt&lat=" + String(lat) + "&lng=" + String(long);
-	console.log(lat);
-	console.log(long);
-	console.log(params);
+	params = "username=FLaFPeNMZt&lat=" + lat + "&lng=" + long;
+	url = "https://jordan-marsh.herokuapp.com/rides";
 	request = new XMLHttpRequest();
-	request.open("POST", "https://jordan-marsh.herokuapp.com/rides", true);
+	request.open("POST", url, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status === 200) {		
 			console.log(request.responseText);
 			responseText = request.responseText;
-			vehicles = JSON.parse(responseText); 
+			data = JSON.parse(responseText); 
 
-			for (count = 0; count < vehicles.length; count++) {
-				vLoc = new google.maps.LatLng(vehicles[count].lat, vehicles[count].lng);
+			for (count = 0; count < data.vehicles.length; count++) {
+				var vLoc = new google.maps.LatLng(data.vehicles[count].lat, data.vehicles[count].lng);
 
-				marker = new google.maps.Marker({
+				var vMarker = new google.maps.Marker({
 					position: vLoc,
-					title: "vehicle " + vehicles[count].username
+					title: data.vehicles[count].username, 
+					icon: "car.png"
 				});
 
-				marker.setMap(map);
+				vMarker.setMap(map);
 
-				google.maps.event.addListener(marker, 'click', function() {
-					infowindow.setContent(marker.title);
-					infowindow.open(map, marker);
+				var infoWindow = new google.maps.InfoWindow()
+				google.maps.event.addListener(vMarker, 'click', function() {
+					infoWindow.setContent(this.title);
+					infoWindow.open(map, this);
 				});
 			}
 		}
