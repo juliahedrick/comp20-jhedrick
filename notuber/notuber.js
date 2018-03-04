@@ -1,17 +1,17 @@
 function init() {
-	lat = 0;
-	long = 0;
+	lat         = 0;
+	long        = 0;
 	minDistance = -1;
-	currentLoc = new google.maps.LatLng(lat, long);
+	currentLoc  = new google.maps.LatLng(lat, long);
 
 	myMap = {
-		zoom: 10, 
-		center: currentLoc, 
+		zoom:      10, 
+		center:    currentLoc, 
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 	};
 
 	infowindow = new google.maps.InfoWindow()
-	map = new google.maps.Map(document.getElementById("myMap"), myMap);
+	map        = new google.maps.Map(document.getElementById("myMap"), myMap);
 	getLocation();
 }
 
@@ -27,13 +27,11 @@ function updateMap() {
 	currentLoc = new google.maps.LatLng(lat, long);
 
 	map.panTo(currentLoc);
-
-
-
+	
 	marker = new google.maps.Marker({
 		position: currentLoc,
-		title: "FLaFPeNMZt",
-		icon: "passenger.png"
+		title:    "FLaFPeNMZt",
+		icon:     "passenger.png"
 	});
 
 	marker.setMap(map);
@@ -48,7 +46,7 @@ function updateMap() {
 
 function findVehicles() {
 	params = "username=FLaFPeNMZt&lat=" + lat + "&lng=" + long;
-	url = "https://jordan-marsh.herokuapp.com/rides";
+	url    = "https://jordan-marsh.herokuapp.com/rides";
 
 	request = new XMLHttpRequest();
 	request.open("POST", url, true);
@@ -59,17 +57,17 @@ function findVehicles() {
 			data = JSON.parse(request.responseText); 
 
 			for (i = 0; i < data.vehicles.length; i++) {
-				var vLoc = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
-				var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc);
+				var vLoc     = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
+				var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
 
 				if ((distance < minDistance) || (minDistance == -1)) {
-					minDistance = distance;
-					marker.title = "FLaFPeNMZt" + "<div>" + minDistance + " meters";
+					minDistance  = distance;
+					marker.title = "Username: FLaFPeNMZt" + "<div>" + minDistance + " miles";
 				}
 
 				var vMarker = new google.maps.Marker({
 					position: vLoc,
-					title: data.vehicles[i].username + "<div>" + distance + " meters",
+					title: "Username: " + data.vehicles[i].username + "<div>" + distance + " miles",
 					icon: "car.png"
 				});
 
