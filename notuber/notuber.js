@@ -16,11 +16,15 @@ function init() {
 }
 
 function getLocation() {
-	navigator.geolocation.getCurrentPosition(function(myPosition){
-		lat  = myPosition.coords.latitude;
-		long = myPosition.coords.longitude;
-		updateMap();
-	});
+	if(navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(myPosition){
+			lat  = myPosition.coords.latitude;
+			long = myPosition.coords.longitude;
+			updateMap();
+		});
+	} else {
+		alert("geolocation is not supported by your web browser.");
+	}
 }
 
 function updateMap() {
@@ -79,6 +83,10 @@ function findVehicles() {
 					vInfoWindow.open(map, this);
 				});
 			}
+		} 
+
+		if (request.readyState == 4 && request.status != 200){
+			document.getElementById("myMap").innerHTML = "<p>Something went wrong</p>";
 		}
 	};
 
