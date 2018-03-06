@@ -45,10 +45,10 @@ function updateMap() {
 		infowindow.open(map, this);
 	});
 
-	findVehicles();
+	findVehiclesorPassengers();
 }
 
-function findVehicles() {
+function findVehiclesorPassengers() {
 	params = "username=FLaFPeNMZt&lat=" + lat + "&lng=" + long;
 	url    = "https://jordan-marsh.herokuapp.com/rides";
 
@@ -60,28 +60,59 @@ function findVehicles() {
 		if (request.readyState == 4 && request.status === 200) {		
 			data = JSON.parse(request.responseText); 
 
-			for (i = 0; i < data.vehicles.length; i++) {
-				var vLoc     = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
-				var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
+			if(data.vehicles != undefined) {
+				for (i = 0; i < data.vehicles.length; i++) {
+					var vLoc     = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
+					var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
 
-				if ((distance < minDistance) || (minDistance == -1)) {
-					minDistance  = distance;
-					marker.title = "Username: FLaFPeNMZt" + "<div>" + minDistance + " miles";
+					if ((distance < minDistance) || (minDistance == -1)) {
+						minDistance  = distance;
+						marker.title = "Username: FLaFPeNMZt" + "<div>" + minDistance + " miles";
+					}
+
+					var vMarker = new google.maps.Marker({
+						position: vLoc,
+						title: "Username: " + data.vehicles[i].username + "<div>" + distance + " miles",
+						icon: "car.png"
+					});
+
+					vMarker.setMap(map);
+
+					var vInfoWindow = new google.maps.InfoWindow()
+					google.maps.event.addListener(vMarker, 'click', function() {
+						vInfoWindow.setContent(this.title);
+						vInfoWindow.open(map, this);
+					});
 				}
+			}
 
-				var vMarker = new google.maps.Marker({
-					position: vLoc,
-					title: "Username: " + data.vehicles[i].username + "<div>" + distance + " miles",
-					icon: "car.png"
-				});
+			//ADDED
+			if(data.passengers != undefined) {
+				for (i = 0; i < data.passengers.length; i++) {
+					var vLoc     = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
+					var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
 
-				vMarker.setMap(map);
+					if ((distance < minDistance) || (minDistance == -1)) {
+						minDistance  = distance;
+						marker.title = "Username: FLaFPeNMZt" + "<div>" + minDistance + " miles";
+					}
 
-				var vInfoWindow = new google.maps.InfoWindow()
-				google.maps.event.addListener(vMarker, 'click', function() {
-					vInfoWindow.setContent(this.title);
-					vInfoWindow.open(map, this);
-				});
+					marker.icon = "car.png";
+
+					var pMarker = new google.maps.Marker({
+						position: vLoc,
+						title: "Username: " + data.passengers[i].username + "<div>" + distance + " miles",
+						icon: "passenger.png"
+					});
+
+					pMarker.setMap(map);
+
+					var pInfoWindow = new google.maps.InfoWindow()
+					google.maps.event.addListener(pMarker, 'click', function() {
+						pInfoWindow.setContent(this.title);
+						pInfoWindow.open(map, this);
+					});
+				}
 			}
 		} 
 
@@ -92,12 +123,3 @@ function findVehicles() {
 
 	request.send(params);
 }
-
-
-
-
-
-
-
-
-
