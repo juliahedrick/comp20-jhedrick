@@ -61,6 +61,7 @@ function findVehiclesorPassengers() {
 
 			if(data.vehicles != undefined) {
 				marker.setIcon("passenger.png");
+				marker.title += "<div>" + "No vehicles available.";
 				for (i = 0; i < data.vehicles.length; i++) {
 					var vLoc     = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
 					var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
@@ -88,6 +89,7 @@ function findVehiclesorPassengers() {
 
 			if(data.passengers != undefined) {
 				marker.setIcon("car.png");
+				marker.title += "<div>" + "No passengers available.";
 				for (i = 0; i < data.passengers.length; i++) {
 					var vLoc     = new google.maps.LatLng(data.passengers[i].lat, data.passengers[i].lng);
 					var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
