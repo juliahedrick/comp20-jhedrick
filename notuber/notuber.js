@@ -35,7 +35,6 @@ function updateMap() {
 	marker = new google.maps.Marker({
 		position: currentLoc,
 		title:    "FLaFPeNMZt",
-		icon:     "passenger.png"
 	});
 
 	marker.setMap(map);
@@ -61,6 +60,7 @@ function findVehiclesorPassengers() {
 			data = JSON.parse(request.responseText); 
 
 			if(data.vehicles != undefined) {
+				marker.setIcon("passenger.png");
 				for (i = 0; i < data.vehicles.length; i++) {
 					var vLoc     = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
 					var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
@@ -86,18 +86,16 @@ function findVehiclesorPassengers() {
 				}
 			}
 
-			//ADDED
 			if(data.passengers != undefined) {
+				marker.setIcon("car.png");
 				for (i = 0; i < data.passengers.length; i++) {
-					var vLoc     = new google.maps.LatLng(data.vehicles[i].lat, data.vehicles[i].lng);
+					var vLoc     = new google.maps.LatLng(data.passengers[i].lat, data.passengers[i].lng);
 					var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLoc, vLoc) * 0.000621371;
 
 					if ((distance < minDistance) || (minDistance == -1)) {
 						minDistance  = distance;
 						marker.title = "Username: FLaFPeNMZt" + "<div>" + minDistance + " miles";
 					}
-
-					marker.icon = "car.png";
 
 					var pMarker = new google.maps.Marker({
 						position: vLoc,
@@ -107,10 +105,9 @@ function findVehiclesorPassengers() {
 
 					pMarker.setMap(map);
 
-					var pInfoWindow = new google.maps.InfoWindow()
 					google.maps.event.addListener(pMarker, 'click', function() {
-						pInfoWindow.setContent(this.title);
-						pInfoWindow.open(map, this);
+						infowindow.setContent(this.title);
+						infowindow.open(map, this);
 					});
 				}
 			}
