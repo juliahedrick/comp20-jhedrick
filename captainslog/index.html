@@ -17,14 +17,13 @@
                     dateObj = (new Date(new Date().getTime())).toString();
 
                     localStorage.setItem(dateObj, theMessage);
-                    console.log(theMessage);
+
                     displayData();
                 }
             });
         });
 
         function displayData(){
-            console.log("in displayData");
             log = document.getElementById("log");
             log.innerHTML = "";
             output = "";
@@ -33,7 +32,7 @@
                 if(numElems > 0){
                     output = "<p>" + key + " - " + localStorage[key] + "</p>\n" + output;
                     numElems--;
-                    console.log(output);
+                    
                 }
             }
 
