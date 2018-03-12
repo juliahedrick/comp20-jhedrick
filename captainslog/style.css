@@ -1,3 +1,8 @@
 body {
 	background-color: grey;
 }
+
+#log {
+	background-color: white;
+	font: helvetica;
+}

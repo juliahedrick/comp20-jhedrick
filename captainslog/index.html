@@ -14,18 +14,27 @@
                     theMessage = document.getElementById("msg").value;
                     document.getElementById("msg").value = "";
 
-                    localStorage.setItem(new Date().getTime(), theMessage);
+                    dateObj = (new Date(new Date().getTime())).toString();
 
+                    localStorage.setItem(dateObj, theMessage);
+                    console.log(theMessage);
                     displayData();
                 }
             });
         });
 
         function displayData(){
+            console.log("in displayData");
             log = document.getElementById("log");
+            log.innerHTML = "";
             output = "";
+            numElems = localStorage.length;
             for (key in localStorage) {
-                output = output + "<p>" + localStorage[key] + "<p>" + key + "</p>\n";
+                if(numElems > 0){
+                    output = "<p>" + key + " - " + localStorage[key] + "</p>\n" + output;
+                    numElems--;
+                    console.log(output);
+                }
             }
 
             log.innerHTML = output;
