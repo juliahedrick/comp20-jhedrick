@@ -56,13 +56,10 @@ function findVehiclesorPassengers() {
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	request.onreadystatechange = function() {
-		console.log("request.status");
-		console.log(request.status);
 		if (request.readyState == 4 && request.status === 200) {		
 			data = JSON.parse(request.responseText); 
 
 			if(data.vehicles != undefined) {
-				console.log("is a vehicle");
 				marker.setIcon("passenger.png");
 				marker.title += "<div>" + "No vehicles available.";
 				for (i = 0; i < data.vehicles.length; i++) {
@@ -91,7 +88,6 @@ function findVehiclesorPassengers() {
 			}
 
 			if(data.passengers != undefined) {
-				console.log("is a passenger");
 				marker.setIcon("car.png");
 				marker.title += "<div>" + "No passengers available.";
 				for (i = 0; i < data.passengers.length; i++) {
