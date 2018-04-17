@@ -13,11 +13,8 @@
                 if(event.which == 13) {
                     theMessage = document.getElementById("msg").value;
                     document.getElementById("msg").value = "";
-
                     dateObj = (new Date(new Date().getTime())).toString();
-
                     localStorage.setItem(dateObj, theMessage);
-
                     displayData();
                 }
             });
@@ -31,13 +28,11 @@
             for (key in localStorage) {
                 if(numElems > 0){
                     output = "<p>" + key + " - " + localStorage[key] + "</p>\n" + output;
-                    numElems--;
-                    
+                    numElems--;  
                 }
             }
 
             log.innerHTML = output;
-
         }
 
         $(window).on("load", displayData);
