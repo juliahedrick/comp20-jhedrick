@@ -9,7 +9,7 @@
 	<p>I have been hired to find security vulnerabilities in Reed Thomas-McLean's second and third assignment. His application is: vast-meadow-45262.herokuapp.com </p>
 
 	<h3>Methodology</h3>
-	<p>I did not use any tool. My methodology was researching different vulnerabilities and trying to take advantage of them in the server I was given. This took some trial and error.</p>
+	<p>I did not use any tool. My methodology was researching different vulnerabilities and trying to take advantage of them in the server I was given. This took some trial and error. The form of testing I used was black box. I did not use white box testing to find these vulnerabilities.</p>
 
 	<h3>Abstract of Findings</h3>
 	<p>This website has been found to be vunerable to multiple kinds of security vulnerabilities. The first being a a Denial of Service Attack, which is an attack where the service is made unvailable due to, for example, flooding the server with information. The site is also vulnerable to a Cross Site Scripting Attack. XSS is the use of javascript in an input, query string, or post request parameter that allows a user to change the DOM or Javascript of a site in real time. This can have small consequences like an annoying alert message or larger, more severe consequences like the exposure of user sensitive data. The last vulnerability that I found was the exposure of sensitive data from a mongodb database using php, a language once commonly used for web development before the rise of things like node.js and the express framework. This allows an attacker, using a simple comparison, to see data in the data base that they normally would not have access to. For example,  asking for all the information where the username is not equal to JANET, will return all the other documents in the collection.</p>
@@ -54,7 +54,7 @@
 	</ol>
 
 	<h3>Conclusion</h3>
-	<p> data here.... </p>
+	<p>In conclusion, this website is vulnerable to at least three security attacks. The first line of defense should be sanitizing any user input from query strings, forms, or post request, as user input should never be trusted. As a denial of service attack would take a significant amount of time for this website, I would suggest investing in application frontend hardware to prevent an attack if it ever becomes a  problem. I also noticed that the website does not use the secure HTTP protocol. I recommend upgrading the application to use a more secure protocol, especially as user location is a main part of the data collected.</p>
 
 	<h3>References</h3>
 	<ul>
